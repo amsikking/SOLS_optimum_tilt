@@ -7,7 +7,7 @@ lambda_em = 510 # GFP like
 
 theta1 = np.arcsin(NA1/n1)
 
-a = (lambda_ex * n1)/(np.pi * lambda_em) + np.sin(2 * theta1)
+a = lambda_ex/(np.pi * lambda_em) + np.sin(2 * theta1)
 b = 2 * (1 - 2 * (np.sin(theta1) ** 2))
 c = - np.sin(2 * theta1)
 
