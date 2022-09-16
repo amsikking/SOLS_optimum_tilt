@@ -30,7 +30,7 @@ if __name__ == "__main__":
     ax.set_title('SOLS optimum tilt')
     ax.set_ylabel('theta_t (deg)')
     ax.set_xlabel('theta_1 (deg)')
-    ax.plot(theta_1, theta_t, color='g')
+    ax.plot(theta_1, theta_t, label='optimum tilt', color='g')
     ax.axvline(x=73.23, label='NA 1.35 sil (%0.2f)'%theta_t_135sil,
                linestyle='--', color='r')
     ax.axvline(x=48.75, label='NA 1.00 wat (%0.2f)'%theta_t_100wat,
