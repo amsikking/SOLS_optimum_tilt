@@ -1,29 +1,28 @@
 import numpy as np
 
 def optimum_tilt(na, n, verbose=True):
-    theta = np.arcsin(na/n)
-    theta_e = np.rad2deg(
-        np.arctan(np.sin(theta) / (1/(2*np.pi) + np.cos(theta))))
-    theta_1 = np.rad2deg(theta)
+    theta_1 = np.arcsin(na/n)
+    theta_e = np.arctan(np.sin(theta_1) / (1/(2*np.pi) + np.cos(theta_1)))
     theta_x = theta_1 - theta_e
-    theta_t = 90 - theta_e
+    theta_t = np.pi/2 - theta_e    
     if verbose:
         print('Optimum tilt (NA=%0.2f, n=%0.2f):'%(na,n))
-        print('theta_1=%0.2f'%theta_1)
-        print('theta_e=%0.2f'%theta_e)
-        print('theta_x=%0.2f'%theta_x)
-        print('theta_t=%0.2f'%theta_t)
+        print('theta_1=%0.2f'%np.rad2deg(theta_1))
+        print('theta_e=%0.2f'%np.rad2deg(theta_e))
+        print('theta_x=%0.2f'%np.rad2deg(theta_x))
+        print('theta_t=%0.2f'%np.rad2deg(theta_t))
         print('')
     return theta_1, theta_e, theta_x, theta_t
 
 if __name__ == "__main__":
     # Input:
-    theta_t_135sil = optimum_tilt(1.35, 1.41)[3]
-    theta_t_100wat = optimum_tilt(1.00, 1.33)[3]
+    theta_t_135sil = np.rad2deg(optimum_tilt(1.35, 1.41)[3])
+    theta_t_100wat = np.rad2deg(optimum_tilt(1.00, 1.33)[3])
 
     # Plot:
     na = np.linspace(0.5, 0.96, 1000)
-    theta_1, theta_e, theta_x, theta_t = optimum_tilt(na, 1.00, verbose=False)
+    theta_1, theta_e, theta_x, theta_t = np.rad2deg(
+        optimum_tilt(na, 1.00, verbose=False))
 
     import matplotlib.pyplot as plt
     fig, ax = plt.subplots()
