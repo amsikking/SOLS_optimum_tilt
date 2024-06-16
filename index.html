@@ -2,153 +2,163 @@
 <!DOCTYPE html>
 
 <html lang="en">
-<head>
+  <head>
 	<meta charset="utf-8">
-	<title>amsikking: SOLS optimum tilt</title>
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="stylesheets/style.css">
     <link rel="stylesheet" href="stylesheets/prism.css">
     <script src="javascript/python-highlighting/prism.js"></script>
     <script async src="javascript/Minimal-MathJax/MathJax.js?config=TeX-AMS_CHTML"></script>
     <script src="javascript/update_figures.js"></script>
     <script src="javascript/reference_list/reference_list.js"></script>
-</head>
+	<title>amsikking: SOLS optimum tilt</title>
+  </head>
 
-<body>
-<section>
-	<a href="https://amsikking.github.io/">Home page</a>
-	<h1>amsikking: SOLS optimum tilt</h1>
-	<a href="https://github.com/amsikking/SOLS_optimum_tilt">GitHub repository</a>
+  <body>
+  	<header>
+	  <nav>
+	    <ul>
+		  <li><h1 style="margin-top: 0rem; margin-left: 1rem; margin-right: 1rem">amsikking:</h1></li>
+		  <li><a href="https://amsikking.github.io/">Home page</a></li>
+		  <li><a href="https://github.com/amsikking/SOLS_optimum_tilt">GitHub</a></li>
+	    </ul>
+	  </nav>
+	</header>
 
-	<h2>Description</h2>
-	<p>
-	In a single-objective light-sheet (SOLS) style microscope the light-sheet 
-	consumes some of the numerical aperture (NA) from the emission path. i.e. 
-	more NA for the light-sheet gives better sectioning but less NA for 
-	collecting the emission. The trade between light-sheet and emission NA is 
-	governed by the tilt \(\theta_t\) of the 3rd microscope (\(M_3\) below). 
-	For example, some builders have used 30 degrees for \(\theta_t\). So the 
-	question is, <strong>what is the optimal* tilt?</strong>
-	</p>
-	<p> 
-	Here's a simple analytical estimate for matching the light-sheet thickness 
-	to the axial point spread function of the emission. This may be the maximum
-	tilt that can be effectively used, i.e. <em>more tilting reduces emission 
-	path collection with no obvious advantage.</em>
-	</p>
-	
-	<ul>
-	<li>To quickly see the optimum* tilt for a particular primary objective lens
-	(\(O_1\) below) simply edit and run this Python script:
-	<a href="SOLS_optimum_tilt.py">SOLS_optimum_tilt.py</a></li>
-	</ul>
+	<main>
+	  <h1>SOLS optimum tilt</h1>
+	  <p>Calculations for choosing the tilt angle in a single-objective light-sheet (SOLS) microscope.</p>
+	  <section>
+		<h2>Description</h2>
+		<p>
+		In a single-objective light-sheet (SOLS) style microscope the light-sheet 
+		consumes some of the numerical aperture (NA) from the emission path. i.e. 
+		more NA for the light-sheet gives better sectioning but less NA for 
+		collecting the emission. The trade between light-sheet and emission NA is 
+		governed by the tilt \(\theta_t\) of the 3rd microscope (\(M_3\) below). 
+		For example, some builders have used 30 degrees for \(\theta_t\). So the 
+		question is, <strong>what is the optimal* tilt?</strong>
+		</p>
+		<p> 
+		Here's a simple analytical estimate for matching the light-sheet thickness 
+		to the axial point spread function of the emission. This may be the maximum
+		tilt that can be effectively used, i.e. <em>more tilting reduces emission 
+		path collection with no obvious advantage.</em>
+		</p>
+		
+		<ul>
+		<li>To quickly see the optimum* tilt for a particular primary objective lens
+		(\(O_1\) below) simply edit and run this Python script:
+		<a href="SOLS_optimum_tilt.py">SOLS_optimum_tilt.py</a></li>
+		</ul>
 
-	<figure>
-    <img src="figures/SOLS_tilt_overview.png" alt="SOLS_tilt_overview.png">
-    <figcaption>
-	(<a href="figures/SOLS_angles_sketches.odp">.odp sketch</a>)
-	</figcaption>
-	</figure>
+		<figure>
+		  <img src="figures/SOLS_tilt_overview.png" alt="SOLS_tilt_overview.png">
+		  <figcaption>
+		  (<a href="figures/SOLS_angles_sketches.odp">.odp sketch</a>)
+		  </figcaption>
+		</figure>
 
-	<p>
-	<strong>*Note:</strong> what is <em>optimal</em> really depends on the
-	sample and application. So the point of this calculation is not to find a 
-	'true optimum', but to highlight that this choice is important and should 
-	be considered before building a system.
-	</p>
+		<p>
+		<strong>*Note:</strong> what is <em>optimal</em> really depends on the
+		sample and application. So the point of this calculation is not to find a 
+		'true optimum', but to highlight that this choice is important and should 
+		be considered before building a system.
+		</p>
 
-	<h2>Angular constraints</h2>
-	<p>
-	The SOLS architecture forces constraints on the angular ranges of the 
-	system, which can be seen in the space of objective 1 (\(O_1\)). With no
-	tilt (\(\theta_t=0\)), microscope 3 (\(M_3\)) would simply re-image the 
-	traditional focal plane. As \(\theta_t\) increases, at some point it 
-	crosses the boundary of the \(O_1\) half angle \(\theta_1\), thereby 
-	allowing a finite amount of excitation via \(\theta_x\), but in
-	doing so reducing the collection angle for the emission \(\theta_e\) 
-	(albeit only on one side):
-	
-	\[\theta_e = \theta_1 - \theta_x \tag{1}\]
-	
-	and,
-	
-	\[\theta_t = \frac{\pi}{2} - \theta_e \tag{2}\]
-	</p>
+		<h2>Angular constraints</h2>
+		<p>
+		The SOLS architecture forces constraints on the angular ranges of the 
+		system, which can be seen in the space of objective 1 (\(O_1\)). With no
+		tilt (\(\theta_t=0\)), microscope 3 (\(M_3\)) would simply re-image the 
+		traditional focal plane. As \(\theta_t\) increases, at some point it 
+		crosses the boundary of the \(O_1\) half angle \(\theta_1\), thereby 
+		allowing a finite amount of excitation via \(\theta_x\), but in
+		doing so reducing the collection angle for the emission \(\theta_e\) 
+		(albeit only on one side):
+		
+		\[\theta_e = \theta_1 - \theta_x \tag{1}\]
+		
+		and,
+		
+		\[\theta_t = \frac{\pi}{2} - \theta_e \tag{2}\]
+		</p>
 
-	<figure>
-    <img src="figures/SOLS_angular_constraints.png" alt="SOLS_angular_constraints.png">
-    <figcaption>
-	(<a href="figures/SOLS_angles_sketches.odp">.odp sketch</a>)
-	</figcaption>
-	</figure>
+		<figure>
+		  <img src="figures/SOLS_angular_constraints.png" alt="SOLS_angular_constraints.png">
+		  <figcaption>
+		  (<a href="figures/SOLS_angles_sketches.odp">.odp sketch</a>)
+		  </figcaption>
+		</figure>
 
-	<h2>Matching excitation with emission</h2>
-	<p>
-	One possible criteria for optimizing the tilt angle is to match the 
-	light-sheet thickness to the axial point spread function of the emission:
-	
-	\[\sin\theta_e = \frac{w_0}{z_0} \tag{3}\]
-	
-	where,
-	
-	\[w_0 = \frac{\lambda_x}{\pi NA_x} \tag{4}\]
-	
-	and,
-	
-	\[z_0 = 2 \frac{n\lambda_e}{NA_e^2} \tag{5}\]
-	
-	<figure>
-    <img src="figures/SOLS_excitation_emission_match.png" alt="SOLS_excitation_emission_match.png">
-    <figcaption>
-	(<a href="figures/SOLS_angles_sketches.odp">.odp sketch</a>)
-	</figcaption>
-	</figure>
+		<h2>Matching excitation with emission</h2>
+		<p>
+		One possible criteria for optimizing the tilt angle is to match the 
+		light-sheet thickness to the axial point spread function of the emission:
+		
+		\[\sin\theta_e = \frac{w_0}{z_0} \tag{3}\]
+		
+		where,
+		
+		\[w_0 = \frac{\lambda_x}{\pi NA_x} \tag{4}\]
+		
+		and,
+		
+		\[z_0 = 2 \frac{n\lambda_e}{NA_e^2} \tag{5}\]
+		
+		<figure>
+		  <img src="figures/SOLS_excitation_emission_match.png" alt="SOLS_excitation_emission_match.png">
+		  <figcaption>
+		  (<a href="figures/SOLS_angles_sketches.odp">.odp sketch</a>)
+		  </figcaption>
+		</figure>
 
-	<h2>Find the angles</h2>
-	So we can now substitute equations (4) and (5) into (3) to give:
-	
-	\[2\frac{n\lambda_e}{NA_e^2}\sin\theta_e = \frac{\lambda_x}{\pi NA_x} \tag{6}\]
+		<h2>Find the angles</h2>
+		So we can now substitute equations (4) and (5) into (3) to give:
+		
+		\[2\frac{n\lambda_e}{NA_e^2}\sin\theta_e = \frac{\lambda_x}{\pi NA_x} \tag{6}\]
 
-	which using \(NA = n \sin\theta\) simplifies to:
-	
-	\[\frac{\sin\theta_x}{\sin\theta_e} = \frac{\lambda_x}{2\pi \lambda_e} \tag{7}\]
+		which using \(NA = n \sin\theta\) simplifies to:
+		
+		\[\frac{\sin\theta_x}{\sin\theta_e} = \frac{\lambda_x}{2\pi \lambda_e} \tag{7}\]
 
-	We can now use the angular constraint of equation (1) to get:
-	
-	\[\frac{\sin(\theta_1 - \theta_e)}{\sin\theta_e} = 
-	\frac{\lambda_x}{2\pi \lambda_e} \tag{8}\]
+		We can now use the angular constraint of equation (1) to get:
+		
+		\[\frac{\sin(\theta_1 - \theta_e)}{\sin\theta_e} = 
+		\frac{\lambda_x}{2\pi \lambda_e} \tag{8}\]
 
-	and using the identity 
-	\(\sin(\theta_1-\theta_e) = 
-	\sin\theta_1\cos\theta_e - \cos\theta_1\sin\theta_e\)
-	we can convert (8) into:
-	
-	\[\frac{\sin\theta_1\cos\theta_e - \cos\theta_1\sin\theta_e}{\sin\theta_e} =
-	\frac{\lambda_x}{2\pi \lambda_e} \tag{9}\]
-	
-	which simplifies to:
-	
-	\[\frac{\sin\theta_1}{\tan\theta_e} = 
-	\frac{\lambda_x}{2\pi \lambda_e} + \cos\theta_1 \tag{10}\]
+		and using the identity 
+		\(\sin(\theta_1-\theta_e) = 
+		\sin\theta_1\cos\theta_e - \cos\theta_1\sin\theta_e\)
+		we can convert (8) into:
+		
+		\[\frac{\sin\theta_1\cos\theta_e - \cos\theta_1\sin\theta_e}{\sin\theta_e} =
+		\frac{\lambda_x}{2\pi \lambda_e} \tag{9}\]
+		
+		which simplifies to:
+		
+		\[\frac{\sin\theta_1}{\tan\theta_e} = 
+		\frac{\lambda_x}{2\pi \lambda_e} + \cos\theta_1 \tag{10}\]
 
-	or if we allow \(\lambda_e \approx \lambda_x\) more conveniently to:
-	
-	\[\tan\theta_e \approx 
-	\frac{\sin\theta_1}{\frac{1}{2\pi} + \cos\theta_1} \tag{11}\]
+		or if we allow \(\lambda_e \approx \lambda_x\) more conveniently to:
+		
+		\[\tan\theta_e \approx 
+		\frac{\sin\theta_1}{\frac{1}{2\pi} + \cos\theta_1} \tag{11}\]
 
-	<h2>Results</h2>
-	Applying equation (11) to a <strong>1.35 silicone objective</strong>, 
-	which has very high angular collection, returns an tilt angle of about 
-	<strong>25 degrees</strong>. On the other end of the spectrum a 
-	<strong>1.0 water objective</strong> has a much lower angular range, 
-	which forces a higher tilt angle of about <strong>47 degrees</strong>:
+		<h2>Results</h2>
+		Applying equation (11) to a <strong>1.35 silicone objective</strong>, 
+		which has very high angular collection, returns an tilt angle of about 
+		<strong>25 degrees</strong>. On the other end of the spectrum a 
+		<strong>1.0 water objective</strong> has a much lower angular range, 
+		which forces a higher tilt angle of about <strong>47 degrees</strong>:
 
-	<figure>
-    <img src="SOLS_optimum_tilt.png" alt="SOLS_optimum_tilt.png">
-    <figcaption>
-	(<a href="SOLS_optimum_tilt.py">Python script</a>)
-	</figcaption>
-	</figure>
-
-</section>
-</body>
+		<figure>
+		  <img src="SOLS_optimum_tilt.png" alt="SOLS_optimum_tilt.png">
+		  <figcaption>
+		  (<a href="SOLS_optimum_tilt.py">Python script</a>)
+		  </figcaption>
+		</figure>
+	  </section>
+	</main>
+  </body>
 </html>
